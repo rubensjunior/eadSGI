@@ -1,0 +1,48 @@
+{
+  "projectName": "eadSGI",
+  "styleFile": "/css/style.css",
+  "assetsFolder": "/assets",
+  "designFramework": "bootstrap5",
+  "frameworks": [
+    {
+      "name": "fontawesome_5",
+      "type": "cdn"
+    },
+    {
+      "name": "bootstrap5",
+      "type": "local"
+    },
+    {
+      "name": "appConnect",
+      "type": "local"
+    }
+  ],
+  "hostingType": "wappler",
+  "projectServerModel": "node",
+  "runtime": "capacitor",
+  "webRootFolder": "/public",
+  "useRouting": true,
+  "addBase": true,
+  "routingHandler": "node",
+  "projectLinksType": "site",
+  "targets": [
+    {
+      "name": "Development",
+      "remoteURL": "http://localhost:8100",
+      "access": "local",
+      "targetType": "wappler",
+      "webServerLang": "PHP",
+      "databaseConnectionType": "custom",
+      "databaseType": "postgres",
+      "db_host": "pro114.dnspro.com.br",
+      "db_port": "5432",
+      "db_user": "rubensbe_master",
+      "db_password": "@Baki025",
+      "db_database": "rubensbe_spacefeed",
+      "webServerPort": 8100
+    }
+  ],
+  "activeTarget": "Development",
+  "projectType": "web",
+  "extensions": []
+}

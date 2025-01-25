@@ -1,0 +1,89 @@
+{
+  "direct": true,
+  "type": "postgres",
+  "connection": {
+    "host": "pro114.dnspro.com.br",
+    "port": 5432,
+    "user": "rubensbe_master",
+    "password": "@Baki025",
+    "database": "rubensbe_spacefeed"
+  },
+  "schema": {
+    "schemas": [
+      "public"
+    ],
+    "tables": {
+      "empresa": {
+        "db": {
+          "schema": "public"
+        },
+        "refs": {
+          "projetos": "empresa",
+          "tarefas": "empresa"
+        }
+      },
+      "projetos": {
+        "db": {
+          "schema": "public"
+        },
+        "refs": {
+          "tarefas": "projeto",
+          "atividades": "projeto"
+        }
+      },
+      "times": {
+        "db": {
+          "schema": "public"
+        },
+        "refs": {
+          "projetos": "times"
+        }
+      },
+      "tarefas": {
+        "db": {
+          "schema": "public"
+        },
+        "refs": {
+          "atividades": "tarefa"
+        }
+      },
+      "status": {
+        "db": {
+          "schema": "public"
+        },
+        "refs": {
+          "tarefas": "status"
+        }
+      },
+      "membros": {
+        "db": {
+          "schema": "public"
+        }
+      },
+      "atividades": {
+        "db": {
+          "schema": "public"
+        }
+      },
+      "usuarios": {
+        "db": {
+          "schema": "public"
+        },
+        "refs": {
+          "tarefas": "responsavel",
+          "membros": "criado-por",
+          "atividades": "criadopor"
+        }
+      },
+      "atividades-tipos": {
+        "db": {
+          "schema": "public"
+        },
+        "refs": {
+          "atividades": "tipo"
+        }
+      }
+    },
+    "views": {}
+  }
+}
