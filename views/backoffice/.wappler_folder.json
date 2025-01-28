@@ -1,0 +1,10 @@
+{
+  "index.ejs": {
+    "layoutPage": "backoffice",
+    "description": ""
+  },
+  "colaboradores.ejs": {
+    "layoutPage": "backoffice",
+    "description": ""
+  }
+}

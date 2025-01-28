@@ -14,60 +14,384 @@
     ],
     "tables": {
       "empresa": {
-        "db": {
-          "schema": "public"
-        },
+        "db": {},
         "refs": {
           "projetos": "empresa",
           "tarefas": "empresa"
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "default": "",
+              "primary": true,
+              "unique": true,
+              "nullable": false
+            }
+          },
+          "razaoSocial": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "nomeFantasia": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "cnpj": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "cep": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "endereco": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "isAtivo": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "criado-em": {
+            "db": {
+              "type": "timestamp",
+              "useTz": true,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
         }
       },
       "projetos": {
-        "db": {
-          "schema": "public"
-        },
+        "db": {},
         "refs": {
           "tarefas": "projeto",
           "atividades": "projeto"
         }
       },
       "times": {
-        "db": {
-          "schema": "public"
-        },
+        "db": {},
         "refs": {
           "projetos": "times"
         }
       },
       "tarefas": {
-        "db": {
-          "schema": "public"
-        },
+        "db": {},
         "refs": {
           "atividades": "tarefa"
         }
       },
       "status": {
-        "db": {
-          "schema": "public"
-        },
+        "db": {},
         "refs": {
           "tarefas": "status"
         }
       },
       "membros": {
-        "db": {
-          "schema": "public"
-        }
+        "db": {}
       },
       "atividades": {
-        "db": {
-          "schema": "public"
+        "db": {},
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "default": "",
+              "primary": true,
+              "unique": true,
+              "nullable": false
+            }
+          },
+          "projeto": {
+            "db": {
+              "type": "reference",
+              "primary": false,
+              "unique": false,
+              "nullable": true,
+              "references": "id",
+              "inTable": "projetos",
+              "referenceType": "integer",
+              "onUpdate": "CASCADE",
+              "onDelete": "CASCADE"
+            }
+          },
+          "tarefa": {
+            "db": {
+              "type": "reference",
+              "primary": false,
+              "unique": false,
+              "nullable": true,
+              "references": "id",
+              "inTable": "tarefas",
+              "referenceType": "integer",
+              "onUpdate": "CASCADE",
+              "onDelete": "CASCADE"
+            }
+          },
+          "descricao-atividade": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "criadoem": {
+            "db": {
+              "type": "date",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "criadopor": {
+            "db": {
+              "type": "reference",
+              "primary": false,
+              "unique": false,
+              "nullable": true,
+              "references": "id",
+              "inTable": "usuarios",
+              "referenceType": "integer",
+              "onUpdate": "CASCADE",
+              "onDelete": "CASCADE"
+            }
+          },
+          "tipo": {
+            "db": {
+              "type": "reference",
+              "primary": false,
+              "unique": false,
+              "nullable": true,
+              "references": "id",
+              "inTable": "atividades-tipos",
+              "referenceType": "integer",
+              "onUpdate": "CASCADE",
+              "onDelete": "CASCADE"
+            }
+          },
+          "link": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "data-reuniao": {
+            "db": {
+              "type": "date",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "data-fim-reuniao": {
+            "db": {
+              "type": "date",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
         }
       },
       "usuarios": {
-        "db": {
-          "schema": "public"
+        "db": {},
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "default": "",
+              "primary": true,
+              "unique": true,
+              "nullable": false
+            }
+          },
+          "nome": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "email": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "isAdmin": {
+            "db": {
+              "type": "integer",
+              "default": 2,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "isColaborador": {
+            "db": {
+              "type": "integer",
+              "default": 2,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "empresa": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "isAtivo": {
+            "db": {
+              "type": "integer",
+              "default": 2,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "passSecurity": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "academico": {
+            "db": {
+              "type": "integer",
+              "default": 2,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "administrativo": {
+            "db": {
+              "type": "integer",
+              "default": 2,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "comercial": {
+            "db": {
+              "type": "integer",
+              "default": 2,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "diretoria": {
+            "db": {
+              "type": "integer",
+              "default": 2,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "financeiro": {
+            "db": {
+              "type": "integer",
+              "default": 2,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "marketing": {
+            "db": {
+              "type": "integer",
+              "default": 2,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "atendimento": {
+            "db": {
+              "type": "integer",
+              "default": 2,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "ti": {
+            "db": {
+              "type": "integer",
+              "default": 2,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "criado-em": {
+            "db": {
+              "type": "timestamp",
+              "useTz": true,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "criado-por": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
         },
         "refs": {
           "tarefas": "responsavel",
@@ -76,9 +400,7 @@
         }
       },
       "atividades-tipos": {
-        "db": {
-          "schema": "public"
-        },
+        "db": {},
         "refs": {
           "atividades": "tipo"
         }

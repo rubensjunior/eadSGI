@@ -1,18 +1,39 @@
-<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="index" appConnect="local" -->
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="index" appconnect="local" components="{dmxNotifications:{},dmxBrowser:{}}" -->
+
+<dmx-serverconnect id="identificarUsuario" url="/api/autenticacao/identificar-usuario" credentials="true"></dmx-serverconnect>
+
+<script is="dmx-flow" id="redirecionamento" type="text/dmx-flow" autorun="true">[
+  {
+    wait: {delay: 1500}
+  },
+  {
+    condition: {
+      outputType: "boolean",
+      if: "{{identificarUsuario.data.identity!=false}}",
+      then: {
+        steps: {
+          run: {outputType: "text", action: "{{redirecionar.goto('/b/')}}"}
+        }
+      }
+    }
+  }
+]</script>
+<div is="dmx-browser" id="redirecionar"></div>
+<dmx-notifications id="alerta"></dmx-notifications>
 <div class="container-fluid vh-100">
     <div class="row align-items-center h-100">
         <div class="col-12 col-sm-6 col text-start h-100 align-self-center">
             <div class="row justify-content-center h-100 align-items-center">
                 <div class="col-8">
                     <h3 class="text-center fw-bold mb-3">Bem-vindo</h3>
-                    <form id="login">
+                    <form id="login" is="dmx-serverconnect-form" method="post" action="/api/autenticacao/login" dmx-on:error="alerta.danger(lastError.status+lastError.message+lastError.response);login.reset()" dmx-on:unauthorized="alerta.warning('Login ou senha errado');login.reset()" dmx-on:success="alerta.success('Logado com sucesso!');login.reset();redirecionar.goto('/b/')">
                         <div class="form-group mb-3">
                             <input type="email" class="form-control py-2" id="email" name="email" aria-describedby="input1_help" placeholder="Seu e-mail cadastrado">
                         </div>
                         <div class="form-group mb-3">
                             <input type="password" class="form-control py-2" id="senha" name="senha" aria-describedby="input1_help1" placeholder="Sua senha">
                         </div>
-                        <div class="form-group mb-3"> <button id="btn1" class="btn btn-dark py-2 w-100">Fazer login</button>
+                        <div class="form-group mb-3"> <button id="btn1" class="btn btn-dark py-2 w-100" type="submit">Fazer login</button>
                         </div>
                         <div class="form-group mb-3 text-center">
                             <small id="input1_help2" class="form-text"><strong>Para recuperar sua senha clique aqui</strong></small>

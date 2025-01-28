@@ -1,0 +1,9 @@
+{
+  "bootstrap5": {
+    "basic": {
+      "dark": "#0D0E12",
+      "body-color": "#0D0E12"
+    },
+    "advanced": {}
+  }
+}

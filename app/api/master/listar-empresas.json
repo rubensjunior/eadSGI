@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "queryEmpresas",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "select",
+          "columns": [
+            {
+              "table": "empresa",
+              "column": "*"
+            }
+          ],
+          "params": [],
+          "table": {
+            "name": "empresa"
+          },
+          "primary": "id",
+          "joins": [],
+          "query": "select * from \"empresa\""
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "razaoSocial"
+        },
+        {
+          "type": "text",
+          "name": "nomeFantasia"
+        },
+        {
+          "type": "text",
+          "name": "cnpj"
+        },
+        {
+          "type": "text",
+          "name": "cep"
+        },
+        {
+          "type": "text",
+          "name": "endereco"
+        },
+        {
+          "type": "number",
+          "name": "isAtivo"
+        },
+        {
+          "type": "datetime",
+          "name": "criado-em"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

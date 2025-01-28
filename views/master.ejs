@@ -1,0 +1,104 @@
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="master" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxNotifications:{}}" -->
+<dmx-notifications id="alertas"></dmx-notifications>
+<dmx-serverconnect id="listaEmpresas" url="/api/master/listar-empresas"></dmx-serverconnect>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center">Cadastro base</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form id="cadastroIncial" is="dmx-serverconnect-form" method="post" action="/api/registro-empresa/registrar" dmx-on:error="alertas.danger(lastError.status+lastError.message+lastError.response);cadastroIncial.reset()" dmx-on:success="alertas.success('Cadastrado com sucesso!');cadastroIncial.reset()">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" id="razaosocial" name="razaosocial" aria-describedby="input1_help" placeholder="Razão social">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" id="nomefantasia" name="nomefantasia" aria-describedby="input1_help" placeholder="Nome fantasia">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" id="nomepolo" name="nomepolo" aria-describedby="input1_help" placeholder="Nome do polo">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" id="cnpj" name="cnpj" aria-describedby="input1_help" placeholder="CNPJ">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" id="celularpolo" name="celularpolo" aria-describedby="input1_help" placeholder="Celular/whatsapp do polo">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" id="telefonepolo" name="telefonepolo" aria-describedby="input1_help" placeholder="Telefone do polo">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" id="endereco" name="endereco" aria-describedby="input1_help" placeholder="Endereco do polo">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" id="cep" name="cep" aria-describedby="input1_help" placeholder="CEP do polo">
+                        </div>
+                        <div class="form-group mb-3">
+                            <textarea id="obsendereco" class="form-control" name="obsendereco"></textarea>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" id="nomeusuario" name="nomeusuario" aria-describedby="input1_help" placeholder="Nome do usuario">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="input1_help" placeholder="E-mail do usuario">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="password" class="form-control" id="senha" name="senha" aria-describedby="input1_help" placeholder="Senha">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-3"> <button id="btn1" class="btn btn-primary" type="submit">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Razao social</th>
+                            <th>Nome fantasia</th>
+                            <th>Cnpj</th>
+                            <th>Cep</th>
+                            <th>Endereco</th>
+                            <th>Is ativo</th>
+                            <th>Criado em</th>
+                        </tr>
+                    </thead>
+                    <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="listaEmpresas.data.queryEmpresas" id="tableRepeat1">
+                        <tr>
+                            <td dmx-text="id"></td>
+                            <td dmx-text="razaoSocial"></td>
+                            <td dmx-text="nomeFantasia"></td>
+                            <td dmx-text="cnpj"></td>
+                            <td dmx-text="cep"></td>
+                            <td dmx-text="endereco"></td>
+                            <td dmx-text="isAtivo"></td>
+                            <td dmx-text="['criado-em']"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<meta name="ac:route" content="/master">
+<script>
+    $('#cep').mask('00000-000');
+</script>

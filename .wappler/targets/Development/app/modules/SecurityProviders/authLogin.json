@@ -1,0 +1,24 @@
+{
+  "name": "authLogin",
+  "module": "auth",
+  "action": "provider",
+  "options": {
+    "secret": "EccubF9nEZOHLTE",
+    "provider": "Database",
+    "connection": "db",
+    "passwordVerify": true,
+    "users": {
+      "table": "usuarios",
+      "identity": "id",
+      "username": "email",
+      "password": "passSecurity"
+    },
+    "permissions": {}
+  },
+  "meta": [
+    {
+      "name": "identity",
+      "type": "text"
+    }
+  ]
+}

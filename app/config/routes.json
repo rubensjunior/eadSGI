@@ -5,6 +5,26 @@
       "page": "index",
       "routeType": "page",
       "layout": "main"
+    },
+    {
+      "path": "/master",
+      "page": "master",
+      "layout": "main"
+    },
+    {
+      "path": "/b/",
+      "page": "backoffice/index",
+      "layout": "backoffice"
+    },
+    {
+      "path": "/b/colaboradores",
+      "page": "backoffice/colaboradores",
+      "layout": "backoffice"
     }
-  ]
+  ],
+  "layouts": {
+    "backoffice": {
+      "exec": "/api/autenticacao/pagina-restrita"
+    }
+  }
 }
